@@ -1,0 +1,167 @@
+import 'package:flutter/material.dart';
+import 'package:base/Styles/styles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class Records extends StatefulWidget {
+  final String patientNID;
+
+  Records({Key key, @required this.patientNID}) : super(key: key);
+  @override
+  _RecordsState createState() => _RecordsState();
+}
+
+class _RecordsState extends State<Records> {
+  final firestoreInstance = FirebaseFirestore.instance;
+  bool docExists;
+  @override
+  void initState() {
+    print(widget.patientNID);
+  }
+
+  final nidController = TextEditingController();
+  Future<bool> _onBackPressed() {
+    return showDialog(
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Are you sure?'),
+            content: new Text('Do you want to go back to search?'),
+            actions: <Widget>[
+              new GestureDetector(
+                  onTap: () => Navigator.of(context).pop(false),
+                  child: RoundedButton(
+                    title: "NO",
+                    buttoncolor: Color(0xFF00766c),
+                    function: () {
+                      Navigator.of(context).pop(false);
+                    },
+                  )),
+              SizedBox(height: 16),
+              new GestureDetector(
+                //onTap: () => Navigator.of(context).pop(true),
+                onTap: () =>
+                    Navigator.popAndPushNamed(context, '/search_patient_page'),
+                child: RoundedButton(
+                  title: "YES",
+                  buttoncolor: Color(0xFF00766c),
+                  function: () {
+                    Navigator.popAndPushNamed(context, '/search_patient_page');
+                  },
+                ),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      // onWillPop: _onBackPressed,
+      onWillPop: () {
+        Navigator.pop(context);
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Color(0xFFfcfcfc),
+        appBar: kappbar('Records'),
+        body: FutureBuilder<bool>(
+          future: _checkIfDocExists(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.data == false) {
+              return showFist();
+            } else {
+              return showList();
+            }
+          },
+        ),
+        floatingActionButton: RoundedButton(
+          title: 'Add New',
+          content: 'hello',
+          fontcolor: Colors.white,
+          buttoncolor: Color(0xFF00766c),
+          function: () {
+            Navigator.pushNamed(context, '/new_record');
+          },
+        ),
+      ),
+    );
+  }
+
+  Future<bool> _checkIfDocExists() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final snapshot = await firestoreInstance
+        .collection("Users")
+        .doc(currentUser.uid)
+        .collection("Medical Records")
+        .get();
+
+    if (snapshot.docs.isEmpty) {
+      print("No records found");
+      return false;
+    } else {
+      print("Some records are found");
+      return true;
+    }
+  }
+
+  Widget showList() {
+    var currentUser = FirebaseAuth.instance.currentUser;
+
+    return Center(
+        // heightFactor: 10,
+        child: Padding(
+      padding: const EdgeInsets.all(10),
+      // padding: EdgeInsets.symmetric(horizontal: 40),
+
+      child: StreamBuilder(
+          stream: firestoreInstance
+              .collection("Users")
+              .doc(currentUser.uid)
+              .collection('Medical Records')
+              .snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return ListView.separated(
+              separatorBuilder: (context, index) => Divider(
+                thickness: 0.3,
+                color: Colors.grey,
+              ),
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    print("$index was pressed");
+                  },
+                  child: ListTile(
+                    title: Text(
+                      snapshot.data.docs[index].data()['name'].toString(),
+                      style: ktextStyle(FontWeight.w700, 16.0, Colors.black),
+                    ),
+                    subtitle: Text(
+                      snapshot.data.docs[index]
+                          .data()['Additional Notes']
+                          .toString(),
+                      style: ktextStyle(FontWeight.w600, 12.0, Colors.black),
+                    ),
+                  ),
+                );
+              },
+            );
+          }),
+    ));
+  }
+
+  Widget showFist() {
+    return Center(
+      child: Text("No Records Found"),
+    );
+  }
+}
