@@ -517,7 +517,7 @@ class _BasicInfoState extends State<BasicInfo> {
                   alignment: FractionalOffset.bottomRight,
                   child: RoundedButton(
                     title: 'Next',
-                    content: 'hello',
+                    content: 'd',
                     fontcolor: Colors.white,
                     buttoncolor: Color(0xFF00766c),
                     function: () async {
