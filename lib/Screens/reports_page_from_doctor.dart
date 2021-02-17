@@ -28,10 +28,29 @@ class _ReportsState extends State<Reports> {
   String status = '';
   List medications = [];
   List symptoms = [];
+  String hospitalName = '';
+  String title = '';
+  String doubleCheckDocName;
 
   @override
   void initState() {
     getPatientDetails();
+    var value = widget.snapshot.data.docs[widget.index];
+    setState(() {
+      //status = value.data()['isActive'];
+      title = value.data()['Title'];
+      doubleCheckDocName = value.data()['doctorName'];
+      hospitalName = value.data()['Hospital Name'];
+      medications = List.from(value.data()['Medications']);
+      symptoms = List.from(value.data()['Symptoms']);
+      // print("printing experimental values");
+      // print(docName);
+      // print(title);
+      // print(hospitalName);
+      // print("printing experimental values exit");
+      // print(doubleCheckDocName);
+      // print("printing double values exit");
+    });
   }
 
   @override
@@ -43,7 +62,8 @@ class _ReportsState extends State<Reports> {
         elevation: 0,
         backgroundColor: Color(0xFFfcfcfc),
         title: Text(
-          "Record ${widget.index}",
+          // "Record ${widget.index}",
+          title,
           style: TextStyle(
               fontFamily: 'Spartan',
               fontWeight: FontWeight.w900,
@@ -88,6 +108,14 @@ class _ReportsState extends State<Reports> {
                 children: [
                   Text(
                     'Prescribed by: $docName',
+                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(
+                    height: 2,
+                  ),
+                  Text(
+                    'Hospital Name: $hospitalName',
                     style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
                     textAlign: TextAlign.left,
                   ),
@@ -248,6 +276,8 @@ class _ReportsState extends State<Reports> {
         crossAxisAlignment: CrossAxisAlignment.start, children: list);
   }
 
+//widget.snapshot.data.docs[widget.index].data()['Duration']['from'].toString()
+
   getPatientDetails() async {
     docID =
         widget.snapshot.data.docs[widget.index].data()['doctorID'].toString();
@@ -264,7 +294,7 @@ class _ReportsState extends State<Reports> {
           dob = value.data()['DOB'];
           nid = value.data()['NID'];
           email = value.data()['email'];
-          status = value.data()['isActive'];
+          // status = value.data()['isActive'];
           medications = List.from(
               widget.snapshot.data.docs[widget.index].data()['Medications']);
           symptoms = List.from(

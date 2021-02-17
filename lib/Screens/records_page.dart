@@ -78,17 +78,13 @@ class _RecordsState extends State<Records> {
                       );
                     },
                     child: ListTile(
-                      title: Text(
-                        snapshot.data.docs[index].data()['doctorID'].toString(),
-                        style: ktextStyle(FontWeight.w700, 16.0, Colors.black),
-                      ),
-                      subtitle: Text(
-                        snapshot.data.docs[index]
-                            .data()['Additional Note']
-                            .toString(),
-                        style: ktextStyle(FontWeight.w600, 12.0, Colors.black),
-                      ),
-                    ),
+                        // isThreeLine: true,
+                        title: Text(
+                          snapshot.data.docs[index].data()['Title'].toString(),
+                          style:
+                              ktextStyle(FontWeight.w700, 16.0, Colors.black),
+                        ),
+                        subtitle: getSubtitle(snapshot, index)),
                   );
                 },
               );
@@ -188,4 +184,36 @@ class _RecordsState extends State<Records> {
   //     child: Text("No Records Found"),
   //   );
   // }
+
+  Text getSubtitle(snapshot, int index) {
+    String from =
+        snapshot.data.docs[index].data()['Duration']['from'].toString();
+    String until =
+        snapshot.data.docs[index].data()['Duration']['until'].toString();
+
+    // isDateGone(until);
+
+    if (isDateGone(until)) {
+      return Text(
+        "$from to $until".toString(),
+        style: ktextStyle(FontWeight.w800, 12.0, Colors.red),
+      );
+    } else {
+      return Text(
+        "$from to $until".toString(),
+        style: ktextStyle(FontWeight.w800, 12.0, Colors.green),
+      );
+    }
+  }
+
+  isDateGone(String date) {
+    var now = DateTime.now();
+    var until = DateTime.parse(date);
+
+    if (until.compareTo(now) > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

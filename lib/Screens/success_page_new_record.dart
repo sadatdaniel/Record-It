@@ -1,9 +1,7 @@
-import 'package:base/Screens/records_page.dart';
 import 'package:flutter/material.dart';
 import 'package:base/Styles/styles.dart';
-import 'records_page_from_doctor.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SuccessPageNewRecord extends StatefulWidget {
   final String patientDocID;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:base/Styles/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'reports_page_from_doctor.dart';
 import 'new_record_page.dart';
 
@@ -83,18 +82,13 @@ class _RecordsOfPatientState extends State<RecordsOfPatient> {
                       );
                     },
                     child: ListTile(
-                      title: Text(
-                        snapshot.data.docs[index].data()['doctorID'].toString(),
-                        // doctorName,
-                        style: ktextStyle(FontWeight.w700, 16.0, Colors.black),
-                      ),
-                      subtitle: Text(
-                        snapshot.data.docs[index]
-                            .data()['Additional Note']
-                            .toString(),
-                        style: ktextStyle(FontWeight.w600, 12.0, Colors.black),
-                      ),
-                    ),
+                        title: Text(
+                          snapshot.data.docs[index].data()['Title'].toString(),
+                          // doctorName,
+                          style:
+                              ktextStyle(FontWeight.w700, 16.0, Colors.black),
+                        ),
+                        subtitle: getSubtitle(snapshot, index)),
                   );
                 },
               );
@@ -234,5 +228,36 @@ class _RecordsOfPatientState extends State<RecordsOfPatient> {
       currentUser = value.docs.first.id;
     });
     return userID;
+  }
+}
+
+getSubtitle(AsyncSnapshot<QuerySnapshot> snapshot, int index) {
+  String from = snapshot.data.docs[index].data()['Duration']['from'].toString();
+  String until =
+      snapshot.data.docs[index].data()['Duration']['until'].toString();
+
+  // isDateGone(until);
+
+  if (isDateGone(until)) {
+    return Text(
+      "$from to $until".toString(),
+      style: ktextStyle(FontWeight.w800, 12.0, Colors.red),
+    );
+  } else {
+    return Text(
+      "$from to $until".toString(),
+      style: ktextStyle(FontWeight.w800, 12.0, Colors.green),
+    );
+  }
+}
+
+isDateGone(String date) {
+  var now = DateTime.now();
+  var until = DateTime.parse(date);
+
+  if (until.compareTo(now) > 0) {
+    return false;
+  } else {
+    return true;
   }
 }

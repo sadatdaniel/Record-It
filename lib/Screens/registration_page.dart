@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:base/Styles/styles.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
-import 'package:toast/toast.dart';
+
 import 'package:email_validator/email_validator.dart';
 import 'basic_info.dart';
 

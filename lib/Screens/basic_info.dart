@@ -19,6 +19,8 @@ class _BasicInfoState extends State<BasicInfo> {
   final regFullNameController = TextEditingController();
   final regNIDController = TextEditingController();
 
+  final hospitalCodeController = TextEditingController();
+
   List<String> _genders = ['Male', 'Female']; // Option 2
   String _selectedGender;
 
@@ -44,6 +46,7 @@ class _BasicInfoState extends State<BasicInfo> {
   int nID;
 
   int hospitalCode;
+  var hospitalName = '';
 
   DateTime selectedDate = DateTime.now();
 
@@ -68,6 +71,34 @@ class _BasicInfoState extends State<BasicInfo> {
       setState(() {
         selectedDate = picked;
       });
+  }
+
+  void getHospitalInfo(int code) async {
+    var documentid;
+
+    await firestoreInstance
+        .collection("Hospitals")
+        .where('Codes', arrayContains: code)
+        .get()
+        .then(
+      (value) {
+        print("checking if can get hospital info");
+        print(value.docs.first.id);
+        documentid = value.docs.first.id;
+      },
+    );
+
+    await firestoreInstance.collection("Hospitals").doc(documentid).get().then(
+      (value) {
+        print(
+          value.data(),
+        );
+        setState(() {
+          hospitalName = value.data()['Hospital Name'];
+          print(hospitalName);
+        });
+      },
+    );
   }
 
   final firestoreInstance = FirebaseFirestore.instance;
@@ -466,13 +497,10 @@ class _BasicInfoState extends State<BasicInfo> {
                                 ktextStyle(FontWeight.w600, 16.0, Colors.black),
 
                             // controller: regPasswordController1,
-                            onChanged: (value) {
-                              hospitalCode = int.parse(value);
-                              print(hospitalCode);
-                            },
+                            controller: hospitalCodeController,
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly,
-                              LengthLimitingTextInputFormatter(4),
+                              LengthLimitingTextInputFormatter(3),
                             ], // Only numbers
                             keyboardType: TextInputType.number,
                             decoration: kdecoration('Give Hospital Code')),
@@ -492,7 +520,13 @@ class _BasicInfoState extends State<BasicInfo> {
                     content: 'hello',
                     fontcolor: Colors.white,
                     buttoncolor: Color(0xFF00766c),
-                    function: () {
+                    function: () async {
+                      if (hospitalCodeController.text.isEmpty) {
+                        hospitalCode = 0;
+                      } else {
+                        hospitalCode = int.parse(hospitalCodeController.text);
+                      }
+                      await getHospitalInfo(hospitalCode);
                       // print(widget.userEmail);
                       // print(widget.userPassword);
                       // print(regFullNameController.text);
@@ -525,6 +559,7 @@ class _BasicInfoState extends State<BasicInfo> {
                             "Full Name": regFullNameController.text,
                             "NID": regNIDController.text,
                             "isDoctor": isDoctor,
+                            "Hospital Name": hospitalName
                           }).then((value) {
                             //docmunet ID will be uid
                             print(userID);
