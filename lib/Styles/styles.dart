@@ -53,6 +53,10 @@ kdecoration(String hint) {
   );
 }
 
+Color kGreenButtonColor = Color(0xFFd35f5f);
+Color kRedButtonColor = Color(0xFFd35f5f);
+Color kDefaultButtonColor = Color(0xFFd35f5f);
+
 ktextStyle(FontWeight weight, size, color) {
   return TextStyle(
     color: color,

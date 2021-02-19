@@ -30,7 +30,7 @@ class _SuccessPageNewRecordState extends State<SuccessPageNewRecord> {
                 width: 200.0,
                 height: 200.0,
                 decoration: new BoxDecoration(
-                  color: Color(0xFF00766c),
+                  color: Color(0xFFd35f5f),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -57,7 +57,7 @@ class _SuccessPageNewRecordState extends State<SuccessPageNewRecord> {
                     title: 'Records',
                     //content: 'hello',
                     fontcolor: Colors.white,
-                    buttoncolor: Color(0xFF00766c),
+                    buttoncolor: Color(0xFFd35f5f),
                     function: () {
                       // getUID().then(
                       //   (value) {

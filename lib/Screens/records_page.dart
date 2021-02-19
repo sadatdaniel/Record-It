@@ -98,7 +98,7 @@ class _RecordsState extends State<Records> {
           title: 'Add New',
           content: 'hello',
           fontcolor: Colors.white,
-          buttoncolor: Color(0xFF00766c),
+          buttoncolor: Color(0xFFd35f5f),
           function: () {
             Navigator.pushNamed(context, '/new_record');
           },

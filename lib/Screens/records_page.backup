@@ -31,7 +31,7 @@ class _RecordsState extends State<Records> {
                   onTap: () => Navigator.of(context).pop(false),
                   child: RoundedButton(
                     title: "NO",
-                    buttoncolor: Color(0xFF00766c),
+                    buttoncolor: Color(0xFFd35f5f),
                     function: () {
                       Navigator.of(context).pop(false);
                     },
@@ -43,7 +43,7 @@ class _RecordsState extends State<Records> {
                     Navigator.popAndPushNamed(context, '/search_patient_page'),
                 child: RoundedButton(
                   title: "YES",
-                  buttoncolor: Color(0xFF00766c),
+                  buttoncolor: Color(0xFFd35f5f),
                   function: () {
                     Navigator.popAndPushNamed(context, '/search_patient_page');
                   },
@@ -80,7 +80,7 @@ class _RecordsState extends State<Records> {
           title: 'Add New',
           content: 'hello',
           fontcolor: Colors.white,
-          buttoncolor: Color(0xFF00766c),
+          buttoncolor: Color(0xFFd35f5f),
           function: () {
             Navigator.pushNamed(context, '/new_record');
           },

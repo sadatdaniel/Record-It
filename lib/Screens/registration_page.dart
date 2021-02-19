@@ -68,7 +68,7 @@ class _RegistrationState extends State<Registration> {
                     },
                     text: ["Habibi.", "u gay"],
                     textStyle: kwelcomescreentextStyle(
-                        FontWeight.bold, 60.0, Color(0xFF00766c)),
+                        FontWeight.bold, 60.0, Color(0xFFd35f5f)),
                     textAlign: TextAlign.start,
                   ),
                 ),
@@ -139,7 +139,7 @@ class _RegistrationState extends State<Registration> {
                     title: 'Next',
                     content: 'hello',
                     fontcolor: Colors.white,
-                    buttoncolor: Color(0xFF00766c),
+                    buttoncolor: Color(0xFFd35f5f),
                     function: () {
                       print(regEmailController.text);
                       print(regPasswordController1.text);

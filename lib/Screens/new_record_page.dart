@@ -165,7 +165,7 @@ class _NewRecordState extends State<NewRecord> {
                               //     },
                               //     title: "Save",
                               //     fontcolor: Colors.white,
-                              //     buttoncolor: Color(0xFF00766c),
+                              //     buttoncolor: Color(0xFFd35f5f),
                               //   ),
                               // ),
                             ],
@@ -225,7 +225,7 @@ class _NewRecordState extends State<NewRecord> {
                               //     },
                               //     title: "Save",
                               //     fontcolor: Colors.white,
-                              //     buttoncolor: Color(0xFF00766c),
+                              //     buttoncolor: Color(0xFFd35f5f),
                               //   ),
                               // ),
                             ],
@@ -275,7 +275,7 @@ class _NewRecordState extends State<NewRecord> {
                                   value: duration.toDouble(),
                                   min: 0,
                                   max: 60.0,
-                                  activeColor: Color(0xFF00766c),
+                                  activeColor: Color(0xFFd35f5f),
                                   onChanged: (double value) {
                                     setState(() {
                                       duration = value.toInt();
@@ -349,7 +349,7 @@ class _NewRecordState extends State<NewRecord> {
                         title: 'Save',
                         content: 'hello',
                         fontcolor: Colors.white,
-                        buttoncolor: Color(0xFF00766c),
+                        buttoncolor: Color(0xFFd35f5f),
                         function: () {
                           var until = returnDateFromDateTime(DateTime.now()
                               .add(new Duration(days: duration))
@@ -387,7 +387,7 @@ class _NewRecordState extends State<NewRecord> {
       //   title: 'Save',
       //   content: 'hello',
       //   fontcolor: Colors.white,
-      //   buttoncolor: Color(0xFF00766c),
+      //   buttoncolor: Color(0xFFd35f5f),
       //   function: () {
       //     var until = returnDateFromDateTime(
       //         DateTime.now().add(new Duration(days: duration)).toString());

@@ -519,7 +519,7 @@ class _BasicInfoState extends State<BasicInfo> {
                     title: 'Next',
                     content: 'd',
                     fontcolor: Colors.white,
-                    buttoncolor: Color(0xFF00766c),
+                    buttoncolor: Color(0xFFd35f5f),
                     function: () async {
                       if (hospitalCodeController.text.isEmpty) {
                         hospitalCode = 0;
