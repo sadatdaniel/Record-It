@@ -2,6 +2,7 @@ import 'package:base/Screens/new_record_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:base/Styles/styles.dart';
+import 'share_page.dart';
 
 class Reports extends StatefulWidget {
   final AsyncSnapshot<QuerySnapshot> snapshot;
@@ -31,6 +32,8 @@ class _ReportsState extends State<Reports> {
   String hospitalName = '';
   String title = '';
   String doubleCheckDocName;
+  String addiNote = '';
+  String until = '';
 
   @override
   void initState() {
@@ -75,6 +78,26 @@ class _ReportsState extends State<Reports> {
             child: GestureDetector(
               onTap: () {
                 print("hello");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SharePage(
+                      title: title,
+                      fullName: fullName,
+                      addiNote: addiNote,
+                      bloodGroup: bloodGroup,
+                      dob: dob,
+                      docName: docName,
+                      email: email,
+                      hospitalName: hospitalName,
+                      medications: medications,
+                      nid: nid,
+                      reportExportDate: '2021.02.22',
+                      symptoms: symptoms,
+                      until: until,
+                    ),
+                  ),
+                );
               },
               child: Icon(
                 Icons.share,
@@ -294,7 +317,13 @@ class _ReportsState extends State<Reports> {
           dob = value.data()['DOB'];
           nid = value.data()['NID'];
           email = value.data()['email'];
+          until = widget.snapshot.data.docs[widget.index]
+              .data()['Duration']['until']
+              .toString();
           // status = value.data()['isActive'];
+          addiNote = widget.snapshot.data.docs[widget.index]
+              .data()['Additional Note']
+              .toString();
           medications = List.from(
               widget.snapshot.data.docs[widget.index].data()['Medications']);
           symptoms = List.from(

@@ -160,36 +160,36 @@ class _RegistrationState extends State<Registration> {
                       //       gravity: Toast.BOTTOM);
                       // }
 
-                      if (EmailValidator.validate(regEmailController.text)) {
-                        print("Correct");
-                      } else {
-                        _displaySnackBar(context,
-                            "Email is not correct, please check again?");
-                        print("Not correct");
-                      }
+                      // if (EmailValidator.validate(regEmailController.text)) {
+                      //   print("Correct");
+                      // } else {
+                      //   _displaySnackBar(context,
+                      //       "Email is not correct, please check again?");
+                      //   print("Not correct");
+                      // }
 
-                      if (regPasswordController1.text.length > 0 &&
-                          regPasswordController1.text.length > 5) {
-                        print("Correct");
-                      } else {
-                        _displaySnackBar(context,
-                            "Password should be minimum 6 digits long");
-                      }
+                      // if (regPasswordController1.text.length > 0 &&
+                      //     regPasswordController1.text.length > 5) {
+                      //   print("Correct");
+                      // } else {
+                      //   _displaySnackBar(context,
+                      //       "Password should be minimum 6 digits long");
+                      // }
 
-                      if (regPasswordController2.text.length > 0 &&
-                          regPasswordController2.text.length > 5) {
-                        print("Correct");
-                      } else {
-                        _displaySnackBar(context,
-                            "Password should be minimum 6 digits long");
-                      }
+                      // if (regPasswordController2.text.length > 0 &&
+                      //     regPasswordController2.text.length > 5) {
+                      //   print("Correct");
+                      // } else {
+                      //   _displaySnackBar(context,
+                      //       "Password should be minimum 6 digits long");
+                      // }
 
-                      if (regPasswordController2.text ==
-                          regPasswordController1.text) {
-                        print("Correct");
-                      } else {
-                        _displaySnackBar(context, "Password did not match");
-                      }
+                      // if (regPasswordController2.text ==
+                      //     regPasswordController1.text) {
+                      //   print("Correct");
+                      // } else {
+                      //   _displaySnackBar(context, "Password did not match");
+                      // }
 //fix logic here
 
                       Navigator.push(
@@ -211,8 +211,8 @@ class _RegistrationState extends State<Registration> {
     );
   }
 
-  void _displaySnackBar(BuildContext context, String title) {
-    final snackBar = SnackBar(content: Text(title));
-    _scaffoldKey.currentState.showSnackBar(snackBar);
-  }
+  // void _displaySnackBar(BuildContext context, String title) {
+  //   final snackBar = SnackBar(content: Text(title));
+  //   _scaffoldKey.currentState.showSnackBar(snackBar);
+  // }
 }

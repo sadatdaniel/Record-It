@@ -1,3 +1,4 @@
+import 'package:base/Screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:base/Styles/styles.dart';
 
@@ -13,80 +14,110 @@ class SuccessPageNewRecord extends StatefulWidget {
   _SuccessPageNewRecordState createState() => _SuccessPageNewRecordState();
 }
 
+// Future<bool> backButtonBehaviour(){
+
+//                       int count = 0;
+//                       Navigator.popUntil(
+//                         context,
+//                         (route) {
+//                           return count++ == 2;
+//                         },
+//                       );
+
+// }
+
 class _SuccessPageNewRecordState extends State<SuccessPageNewRecord> {
   final firestoreInstance = FirebaseFirestore.instance;
   var patientDocumentID;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFfcfcfc),
-      appBar: kappbar('Confirmation'),
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(50.0),
-              child: Container(
-                width: 200.0,
-                height: 200.0,
-                decoration: new BoxDecoration(
-                  color: Color(0xFFd35f5f),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.done_rounded,
-                  size: 150,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Text(
-              'Successfully New Record is Added',
-              textAlign: TextAlign.center,
-              style: ktextStyle(FontWeight.w900, 20.0, Colors.black),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Align(
-                  alignment: FractionalOffset.bottomRight,
-                  child: RoundedButton(
-                    title: 'Records',
-                    //content: 'hello',
-                    fontcolor: Colors.white,
-                    buttoncolor: Color(0xFFd35f5f),
-                    function: () {
-                      // getUID().then(
-                      //   (value) {
-                      //     print("printinig value");
-                      //     print(value);
-                      //     print("printinig value finishes here");
-                      //     Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //         builder: (context) => RecordsOfPatient(
-                      //             patientDocID: value,
-                      //             isDoctor: true,
-                      //             patientNID: widget.patientNID),
-                      //       ),
-                      //     );
-                      //     print(value);
-                      //   },
-                      // );
-
-                      int count = 0;
-                      Navigator.popUntil(context, (route) {
-                        return count++ == 2;
-                      });
-                    },
+    return WillPopScope(
+      onWillPop: () {
+        // this is the block you need
+        int count = 0;
+        Navigator.popUntil(
+          context,
+          (route) {
+            return count++ == 2;
+          },
+        );
+        // Navigator.pushAndRemoveUntil(context,
+        //     MaterialPageRoute(builder: (context) => Login()), (route) => false);
+        return Future.value(false);
+      },
+      child: Scaffold(
+        backgroundColor: Color(0xFFfcfcfc),
+        appBar: kappbar('Confirmation'),
+        body: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: Container(
+                  width: 200.0,
+                  height: 200.0,
+                  decoration: new BoxDecoration(
+                    color: Color(0xFFd35f5f),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.done_rounded,
+                    size: 150,
+                    color: Colors.white,
                   ),
                 ),
               ),
-            ),
-          ],
+              Text(
+                'Successfully New Record is Added',
+                textAlign: TextAlign.center,
+                style: ktextStyle(FontWeight.w900, 20.0, Colors.black),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Align(
+                    alignment: FractionalOffset.bottomRight,
+                    child: RoundedButton(
+                      title: 'Records',
+                      //content: 'hello',
+                      fontcolor: Colors.white,
+                      buttoncolor: Color(0xFFd35f5f),
+                      function: () {
+                        // getUID().then(
+                        //   (value) {
+                        //     print("printinig value");
+                        //     print(value);
+                        //     print("printinig value finishes here");
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //         builder: (context) => RecordsOfPatient(
+                        //             patientDocID: value,
+                        //             isDoctor: true,
+                        //             patientNID: widget.patientNID),
+                        //       ),
+                        //     );
+                        //     print(value);
+                        //   },
+                        // );
+
+                        int count = 0;
+                        Navigator.popUntil(
+                          context,
+                          (route) {
+                            return count++ == 2;
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

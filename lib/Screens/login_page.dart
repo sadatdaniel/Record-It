@@ -21,6 +21,11 @@ class _LoginState extends State<Login> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    logoutFirst();
+  }
+
+  logoutFirst() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   Future<bool> closeTheApp() {
@@ -197,15 +202,12 @@ class _LoginState extends State<Login> {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
-        
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
       }
     }
     return null;
   }
-
- 
 
   _getUserInfo() {
     var currentUser = FirebaseAuth.instance.currentUser;

@@ -46,14 +46,25 @@ class _NewRecordState extends State<NewRecord> {
     _nameController = TextEditingController();
     _medController = TextEditingController();
     print("printing from new_record_page ${widget.patientDocID}");
+
+    // _nameController.text == null ? print("n") : _nameController.clear();
+    // _medController.text == null ? print("m") : _medController.clear();
+    // _formKey.currentState == null
+    //     ? print("f")
+    //     : _formKey.currentState.dispose();
+    // _formKeyForMed.currentState == null
+    //     ? print("f")
+    //     : _formKeyForMed.currentState.dispose();
   }
 
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _medController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _nameController.dispose();
+  //   _medController.dispose();
+  //   _formKey.currentState.dispose();
+  //   _formKeyForMed.currentState.dispose();
+  //   super.dispose();
+  // }
 
   //////////////////////////////
 
@@ -153,7 +164,7 @@ class _NewRecordState extends State<NewRecord> {
                               ),
                               ..._getSymps(),
                               SizedBox(
-                                height: 40,
+                                height: 10,
                               ),
                               // Center(
                               //   child: RoundedButton(
@@ -213,7 +224,7 @@ class _NewRecordState extends State<NewRecord> {
                               ),
                               ..._getMeds(),
                               SizedBox(
-                                height: 50,
+                                height: 10,
                               ),
                               // Center(
                               //   child: RoundedButton(
@@ -268,7 +279,7 @@ class _NewRecordState extends State<NewRecord> {
                                       ? duration.toString() + ' Day'
                                       : duration.toString() + ' Days',
                                   style: ktextStyle(
-                                      FontWeight.w900, 30.0, Colors.black),
+                                      FontWeight.w800, 20.0, Colors.black),
                                   textAlign: TextAlign.center,
                                 ),
                                 Slider(
@@ -293,7 +304,7 @@ class _NewRecordState extends State<NewRecord> {
                                               .add(new Duration(days: duration))
                                               .toString()),
                                   style: ktextStyle(
-                                      FontWeight.w900, 14.0, Colors.black),
+                                      FontWeight.w800, 14.0, Colors.black),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
@@ -551,6 +562,7 @@ class _SympTextFieldsState extends State<SympTextFields> {
   void initState() {
     super.initState();
     _nameController = TextEditingController();
+    // dispose();
   }
 
   @override
