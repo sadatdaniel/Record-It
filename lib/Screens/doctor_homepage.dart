@@ -66,7 +66,7 @@ class _SearchPatientState extends State<SearchPatient> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 40.0, right: 40.0, top: 200, bottom: 0),
+                    left: 40.0, right: 40.0, top: 150, bottom: 0),
                 // padding: EdgeInsets.symmetric(horizontal: 40),
                 child: TextField(
                     keyboardType: TextInputType.number,

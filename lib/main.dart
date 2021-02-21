@@ -8,7 +8,6 @@ import 'Screens/records_page.dart';
 import 'Screens/new_record_page.dart';
 import 'Screens/success_page_new_record.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -27,22 +26,27 @@ class _MyAppState extends State<MyApp> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   String initPage;
 
+  // @override
+  // void initState() {
+  //   try {
+  //     currentUser = auth.currentUser;
+  //     if (currentUser != null) {
+  //       initPage = '/search_patient_page';
+  //       /*
+  //     here id is static variable which declare as a page name.
+  //      */
+  //     } else {
+  //       initPage = '/login';
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //     initPage = '/login';
+  //   }
+  // }
+
   @override
   void initState() {
-    try {
-      currentUser = auth.currentUser;
-      if (currentUser != null) {
-        initPage = '/search_patient_page';
-        /*
-      here id is static variable which declare as a page name.
-       */
-      } else {
-        initPage = '/login';
-      }
-    } catch (e) {
-      print(e);
-      initPage = '/login';
-    }
+    initPage = '/login';
   }
 
   @override

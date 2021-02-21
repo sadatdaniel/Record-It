@@ -67,7 +67,7 @@ class _LoginState extends State<Login> {
                     child: Text(
                       "Merhaba",
                       style: kwelcomescreentextStyle(
-                          FontWeight.bold, 60.0, Colors.black),
+                          FontWeight.bold, 40.0, Colors.black),
                     ),
                   ),
                 ),

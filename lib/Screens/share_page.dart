@@ -6,6 +6,7 @@ import 'package:pdf/pdf.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:share/share.dart';
 import 'package:pdf/widgets.dart' as pdfLib;
+import 'package:base/Styles/styles.dart';
 
 class SharePage extends StatefulWidget {
   final String bloodGroup;
@@ -74,11 +75,9 @@ class _SharePageState extends State<SharePage> {
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "Get QR Code",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        )
+                        Text("Get QR Code",
+                            style:
+                                ktextStyle(FontWeight.w400, 12.0, Colors.black))
                       ],
                     ),
                     height: 200,
@@ -123,11 +122,9 @@ class _SharePageState extends State<SharePage> {
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "Export To PDF",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        )
+                        Text("Export To PDF",
+                            style:
+                                ktextStyle(FontWeight.w400, 12.0, Colors.black))
                       ],
                     ),
                     height: 200,
@@ -598,7 +595,7 @@ class _SharePageState extends State<SharePage> {
 
     final String dir = (await getApplicationDocumentsDirectory()).path;
     // print(dir);
-    final String path = '$dir/test_pdf.pdf';
+    final String path = '$dir/record.pdf';
     final File file = File(path);
     await file.writeAsBytes(await pdf.save());
     print(await file.exists());

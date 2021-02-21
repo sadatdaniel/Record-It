@@ -107,180 +107,186 @@ class _ReportsState extends State<Reports> {
           )
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-            child: Text("Record Details",
-                textAlign: TextAlign.left,
-                style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: new Container(
-              alignment: Alignment.centerLeft,
-              padding: new EdgeInsets.all(15.0),
-              width: double.infinity,
-              decoration: new BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                color: Color(0xffe6e6e6),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Prescribed by: $docName',
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+                child: Text("Record Details",
                     textAlign: TextAlign.left,
+                    style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                child: new Container(
+                  alignment: Alignment.centerLeft,
+                  padding: new EdgeInsets.all(15.0),
+                  width: double.infinity,
+                  decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    color: Color(0xffe6e6e6),
                   ),
-                  SizedBox(
-                    height: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Prescribed by: $docName',
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        'Hospital Name: $hospitalName',
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "From: ${widget.snapshot.data.docs[widget.index].data()['Duration']['from'].toString()} to ${widget.snapshot.data.docs[widget.index].data()['Duration']['until'].toString()}",
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        widget.snapshot.data.docs[widget.index]
+                                .data()['isActive']
+                            ? "Status: Active"
+                            : "Status: Not Active",
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.teal),
+                      ),
+                    ],
                   ),
-                  Text(
-                    'Hospital Name: $hospitalName',
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+                child: Text("Patient Details",
                     textAlign: TextAlign.left,
-                  ),
-                  SizedBox(
-                    height: 2,
-                  ),
-                  Text(
-                    "From: ${widget.snapshot.data.docs[widget.index].data()['Duration']['from'].toString()} to ${widget.snapshot.data.docs[widget.index].data()['Duration']['until'].toString()}",
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
-                  ),
-                  SizedBox(
-                    height: 2,
-                  ),
-                  Text(
-                    widget.snapshot.data.docs[widget.index].data()['isActive']
-                        ? "Status: Active"
-                        : "Status: Not Active",
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.teal),
-                  ),
-                ],
+                    style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
               ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-            child: Text("Patient Details",
-                textAlign: TextAlign.left,
-                style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: new Container(
-              alignment: Alignment.centerLeft,
-              padding: new EdgeInsets.all(15.0),
-              width: double.infinity,
-              decoration: new BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                color: Color(0xffe6e6e6),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                child: new Container(
+                  alignment: Alignment.centerLeft,
+                  padding: new EdgeInsets.all(15.0),
+                  width: double.infinity,
+                  decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    color: Color(0xffe6e6e6),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Name : $fullName',
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "Email: $email",
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "Date of Birth: $dob",
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "National ID Number: $nid",
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "Blood Group: $bloodGroup",
+                        style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Name : $fullName',
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+                child: Text("Symptoms",
                     textAlign: TextAlign.left,
-                  ),
-                  SizedBox(
-                    height: 2,
-                  ),
-                  Text(
-                    "Email: $email",
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
-                  ),
-                  SizedBox(
-                    height: 2,
-                  ),
-                  Text(
-                    "Date of Birth: $dob",
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
-                  ),
-                  SizedBox(
-                    height: 2,
-                  ),
-                  Text(
-                    "National ID Number: $nid",
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
-                  ),
-                  SizedBox(
-                    height: 2,
-                  ),
-                  Text(
-                    "Blood Group: $bloodGroup",
-                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
-                  ),
-                ],
+                    style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
               ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-            child: Text("Symptoms",
-                textAlign: TextAlign.left,
-                style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: new Container(
-                alignment: Alignment.centerLeft,
-                padding: new EdgeInsets.all(15.0),
-                width: double.infinity,
-                decoration: new BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  color: Color(0xffe6e6e6),
-                ),
-                child: _listToText(symptoms)
-                // children: [_listToText(medications)],
-                ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-            child: Text("Medications",
-                textAlign: TextAlign.left,
-                style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: new Container(
-                alignment: Alignment.centerLeft,
-                padding: new EdgeInsets.all(15.0),
-                width: double.infinity,
-                decoration: new BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  color: Color(0xffe6e6e6),
-                ),
-                child: _listToText(medications)),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-            child: Text("Additional Notes",
-                textAlign: TextAlign.left,
-                style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: new Container(
-              alignment: Alignment.centerLeft,
-              padding: new EdgeInsets.all(15.0),
-              width: double.infinity,
-              decoration: new BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                color: Color(0xffe6e6e6),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                child: new Container(
+                    alignment: Alignment.centerLeft,
+                    padding: new EdgeInsets.all(15.0),
+                    width: double.infinity,
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      color: Color(0xffe6e6e6),
+                    ),
+                    child: _listToText(symptoms)
+                    // children: [_listToText(medications)],
+                    ),
               ),
-              child: Text(
-                widget.snapshot.data.docs[widget.index]
-                    .data()['Additional Note']
-                    .toString(),
-                style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+                child: Text("Medications",
+                    textAlign: TextAlign.left,
+                    style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
               ),
-            ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                child: new Container(
+                    alignment: Alignment.centerLeft,
+                    padding: new EdgeInsets.all(15.0),
+                    width: double.infinity,
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      color: Color(0xffe6e6e6),
+                    ),
+                    child: _listToText(medications)),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+                child: Text("Additional Notes",
+                    textAlign: TextAlign.left,
+                    style: ktextStyle(FontWeight.w600, 20.0, Colors.black)),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                child: new Container(
+                  alignment: Alignment.centerLeft,
+                  padding: new EdgeInsets.all(15.0),
+                  width: double.infinity,
+                  decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    color: Color(0xffe6e6e6),
+                  ),
+                  child: Text(
+                    widget.snapshot.data.docs[widget.index]
+                        .data()['Additional Note']
+                        .toString(),
+                    style: ktextStyle(FontWeight.w800, 14.0, Colors.black),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
